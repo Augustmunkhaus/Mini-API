@@ -2,7 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http.Json;
 using Data;
 using Service;
-using Model;
+using shared.Model;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,8 @@ builder.Services.AddScoped<DataService>();
 
 
 var app = builder.Build();
+User newUser = new User("bob");
+Console.WriteLine(JsonSerializer.Serialize(new Comment("Header", newUser)));
 
 // Seed data hvis nødvendigt.
 using (var scope = app.Services.CreateScope())
@@ -70,7 +73,7 @@ app.MapGet("api/threadposts/users/{id}", (DataService service, int id) =>
     return service.GetUser(id);
 });
 
-app.MapGet("api/threadposts/comments", (DataService service) =>
+app.MapGet("api/comments", (DataService service) =>
 {
     return service.GetComments();
 });
@@ -82,18 +85,38 @@ app.MapPost("api/threadposts", (DataService service, ThreadPost threadpost) =>
 return Results.Created($"api/threadposts", threadpost);
 
 });
-app.MapPost("api/comments", (DataService service, Comment comment) =>
+app.MapPost("api/comments/{Postid}", (DataService service, Comment comment, int Postid) =>
 {
-    service.CreateComment(comment);
+    service.CreateComment(comment, Postid);
 
     return Results.Created($"api/comments/{comment.Id}", comment);
 
 });
 
-app.MapPut("api/threadposts/{id}", (int Id) =>
+app.MapPut("api/threadposts/{id}/like", (DataService service, int Id) =>
 {
-    var thread = GetThreadById(id);
+     service.ThreadUpvotes(Id);
 
+
+});
+
+app.MapPut("api/threadposts/{id}/dislike", (DataService service, int Id) =>
+{
+    service.ThreadDownvotes(Id);
+
+});
+
+app.MapPut("api/comments/{id}/like", (DataService service, int Id) =>
+{
+
+    service.CommentUpvotes(Id);
+
+});
+
+app.MapPut("api/comments/{id}/dislike", (DataService service, int Id) =>
+{
+
+    service.CommentDownvotes(Id);
 
 });
 

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Model;
+using shared.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

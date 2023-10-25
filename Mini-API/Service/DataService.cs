@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Text.Json;
 
 using Data;
-using Model;
-
+using shared.Model;
 namespace Service;
 
 public class DataService
@@ -34,48 +32,94 @@ public class DataService
 
     }
 
-        // ThreadPosts
-        public List<ThreadPost> GetThreadPosts()
-        {
-            return db.ThreadPosts.Include(x => x.Comments).ThenInclude(u => u.User).ToList();
-        }
-
-        public ThreadPost GetThreadPost(int id)
-        {
-            return db.ThreadPosts.Include(x => x.Comments).ThenInclude(u => u.User).FirstOrDefault(x => x.Id == id);
-        }
-
-        public List<User> GetUsers()
-        {
-            return db.Users.ToList();
-        }
-
-        public User GetUser(int id)
-        {
-            return db.Users.FirstOrDefault(x => x.Id == id);
-        }
-
-        public string CreateThreadPost(ThreadPost threadPost)
-        {
-            db.ThreadPosts.Add(threadPost);
-            db.SaveChanges();
-
-            return "Threadpost created, id: " + threadPost.Id;
-        }
-
-    public void Threadvotes(int id)
-
-        //todo
-
-    public string CreateComment(Comment comment)
+    // ThreadPosts
+    public List<ThreadPost> GetThreadPosts()
     {
-        db.Comments.Add(comment);
+        return db.ThreadPosts.Include(u => u.User).Include(x => x.Comments).ThenInclude(u => u.User).OrderBy(p => p.Date).ToList();
+        
+    }
+
+    public ThreadPost GetThreadPost(int id)
+    {
+        return db.ThreadPosts.Include(u => u.User).Include(x => x.Comments).ThenInclude(u => u.User).FirstOrDefault(x => x.Id == id);
+    }
+
+    public List<User> GetUsers()
+    {
+        return db.Users.ToList();
+    }
+
+    public User GetUser(int id)
+    {
+        return db.Users.FirstOrDefault(x => x.Id == id);
+    }
+
+    public string CreateThreadPost(ThreadPost threadPost)
+    {
+        threadPost.Date = DateTime.Now;
+        db.ThreadPosts.Add(threadPost);
+        db.SaveChanges();
+
+        return "Threadpost created, id: " + threadPost.Id;
+    }
+
+    public void ThreadUpvotes(int id)
+    {
+        var thread = db.ThreadPosts.FirstOrDefault(x => x.Id == id);
+
+        thread.Upvotes++;
+
+        db.SaveChanges();
+
+
+    }
+
+    public void CommentUpvotes(int id)
+
+    {
+        var comment = db.Comments.FirstOrDefault(x => x.Id == id);
+
+        comment.Upvotes++;
+        db.SaveChanges();
+    }
+    //todo
+
+    public void ThreadDownvotes(int id)
+
+    //todo
+    {
+        var thread = db.ThreadPosts.FirstOrDefault(x => x.Id == id);
+
+        thread.Upvotes--;
+
+        db.SaveChanges();
+
+
+    }
+
+    public void CommentDownvotes(int id)
+
+    //todo
+    {
+        var comment = db.Comments.FirstOrDefault(x => x.Id == id);
+
+        comment.Upvotes--;
+        db.SaveChanges();
+    }
+
+    public string CreateComment(Comment comment, int Postid)
+    {
+        comment.Date = DateTime.Now;
+       var Post = db.ThreadPosts.Include(c => c.Comments).FirstOrDefault(x => x.Id == Postid);
+        Post.Comments.Add(comment);
         db.SaveChanges();
         return "Comment created";
     }
 
         public List<Comment> GetComments()
         {
-            return db.Comments.Include(t => t.User).ToList();
-        } 
-} 
+            return db.Comments.Include(t => t.User).OrderBy(c => c.Date).ToList();
+    }
+
+  
+}

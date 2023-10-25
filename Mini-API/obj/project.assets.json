@@ -570,6 +570,16 @@
         "build": {
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
+      },
+      "shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/shared.dll": {}
+        }
       }
     }
   },
@@ -1290,13 +1300,19 @@
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "shared/1.0.0": {
+      "type": "project",
+      "path": "../../kreddit-blazor/shared/shared.csproj",
+      "msbuildProject": "../../kreddit-blazor/shared/shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 7.0.12",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.12",
-      "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.12"
+      "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.12",
+      "shared >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1306,11 +1322,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Claras PC\\source\\repos\\Mini-API\\Mini-API.csproj",
+      "projectUniqueName": "C:\\Users\\Claras PC\\source\\repos\\Miniprojekt\\Mini-API\\Mini-API.csproj",
       "projectName": "Mini-API",
-      "projectPath": "C:\\Users\\Claras PC\\source\\repos\\Mini-API\\Mini-API.csproj",
+      "projectPath": "C:\\Users\\Claras PC\\source\\repos\\Miniprojekt\\Mini-API\\Mini-API.csproj",
       "packagesPath": "C:\\Users\\Claras PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Claras PC\\source\\repos\\Mini-API\\obj\\",
+      "outputPath": "C:\\Users\\Claras PC\\source\\repos\\Miniprojekt\\Mini-API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1331,7 +1347,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Claras PC\\source\\repos\\kreddit-blazor\\shared\\shared.csproj": {
+              "projectPath": "C:\\Users\\Claras PC\\source\\repos\\kreddit-blazor\\shared\\shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

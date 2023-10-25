@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wPACk7QMbNsDjLKMEV3Vczd0vViNULevIsNdz33CwMMVCMiMGcFGVXWnPCRc/pHEJH2LGHOpBTQRc4Mx66urEg==",
+  "dgSpecHash": "mMNYzwKjCco1umY1ozFy5Jmei+z8o5Ss9an0TpHhg5HxPXGMXOBf3+cIcJng0q4XJWoHKAqZComFvSkbNEjh4A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Claras PC\\source\\repos\\Mini-API\\Mini-API.csproj",
+  "projectFilePath": "C:\\Users\\Claras PC\\source\\repos\\Miniprojekt\\Mini-API\\Mini-API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Claras PC\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Claras PC\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\7.0.12\\microsoft.aspnetcore.diagnostics.entityframeworkcore.7.0.12.nupkg.sha512",
