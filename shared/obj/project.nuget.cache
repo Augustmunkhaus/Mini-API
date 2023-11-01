@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "83V6711CWDZrpA4QnwEm5O+BC+QojlZ94nSxwx+0tDKA0DFNuT+UQvkg5QAO+mJFDP6AhUXrIeJDvWAkfkq+Fw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Claras PC\\source\\repos\\kreddit-blazor\\shared\\shared.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Claras PC\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.24\\microsoft.windowsdesktop.app.ref.6.0.24.nupkg.sha512",
+    "C:\\Users\\Claras PC\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.24\\microsoft.netcore.app.ref.6.0.24.nupkg.sha512",
+    "C:\\Users\\Claras PC\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.24\\microsoft.aspnetcore.app.ref.6.0.24.nupkg.sha512"
+  ],
+  "logs": []
+}
